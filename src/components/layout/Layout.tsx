@@ -3,10 +3,12 @@ import { Outlet } from "react-router-dom"
 
 function Layout() {
     return (
-        <div className="h-max">
+        <>
             <Nav />
-            <Outlet />
-        </div>
+            <div className="content p-4">
+                <Outlet />
+            </div>
+        </>
     )
 }
 

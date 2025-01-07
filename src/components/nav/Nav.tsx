@@ -31,7 +31,7 @@ function Nav() {
 
     return (
         <>
-            <nav className="flex gap-4">
+            <nav className="flex gap-4 p-4">
                 {navContent.main.map((item, index) => (
                 <Link key={index} to={item.url}>{item.title}</Link>
             ))}
