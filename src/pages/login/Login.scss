@@ -25,12 +25,14 @@
     .cta-buttons {
         display: flex;
         justify-content: space-between;
+        align-items: end;
         width: 100%;
 
         .btn-forgot {
             @apply text-xs;
             @apply text-gray-500;
             @apply transition-all;
+            padding-bottom: 5px;
 
             &:hover {
                 @apply text-gray-700;
