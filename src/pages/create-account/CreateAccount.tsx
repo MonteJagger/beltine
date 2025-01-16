@@ -1,14 +1,19 @@
-import { useState } from "react"
-import './Login.scss'
+import { useState } from "react";
+import AuthService from "@/services/auth";
 
-function Login() {
+function CreateAccount() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
+        await AuthService.createAccount(email, password)
+    }
+
     return (
         <>
-            <h1>Login</h1>
-            <form className="form login-form">
+            <h1>Create an Account</h1>
+            <form className="form" onSubmit={handleSubmit}>
                 <div className="input-group email">
                     <label htmlFor="email">Email</label>
                     <input
@@ -26,19 +31,18 @@ function Login() {
                     <input
                         type="password"
                         id="password"
-                        placeholder="Password"
+                        placeholder="password"
                         value={password}
                         onChange={e => setPassword(e.target.value)}
-                        />
+                    />
                 </div>
 
                 <div className="cta-buttons">
-                    <button type="submit" className="btn-forgot">Forgot Password?</button>
-                    <button type="submit" className="btn">Login</button>
+                    <button type="submit" className="btn">Create</button>
                 </div>
             </form>
         </>
     )
 }
 
-export default Login
+export default CreateAccount

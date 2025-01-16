@@ -1,56 +1,5 @@
-.form {
-    @apply bg-gray-200;
-    @apply rounded;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: 300px;
-    padding: 20px 20px;
-
-    justify-content: center;
-    align-items: center;
-
-    .input-group {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        width: 100%;
-
-        input {
-            @apply rounded;
-            padding: 4px;
-        }
-    }
-
+form.login-form {
     .cta-buttons {
-        display: flex;
         justify-content: space-between;
-        align-items: end;
-        width: 100%;
-
-        .btn-forgot {
-            @apply text-xs;
-            @apply text-gray-500;
-            @apply transition-all;
-            padding-bottom: 5px;
-
-            &:hover {
-                @apply text-gray-700;
-                @apply ease-in-out;
-            }
-        }
-
-        .btn-login {
-            @apply bg-cyan-600;
-            @apply text-white;
-            @apply rounded;
-            @apply transition-all;
-            @apply ease-in-out;
-            padding: 10px 20px;
-
-            &:hover {
-                @apply bg-cyan-700;
-            }
-        }
     }
 }

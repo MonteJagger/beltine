@@ -17,6 +17,10 @@ const navContent = {
         {
             title: 'Log in',
             url: '/login',
+        },
+        {
+            title: 'Create Account',
+            url: '/create-account'
         }
     ],
     secondary: [
