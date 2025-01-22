@@ -21,10 +21,21 @@ const navContent = {
 }
 
 function Nav() {
+    // TODO: make user a context to share state across the app
     const [user, setUser] = useState<User | null>(null)
 
+    const handleClickSignOut = () => {
+        AuthService.signOut()
+        setUser(null)
+    }
+
     const getUserNav = () => {
-        if (user) return <Link key='Account' to='/account'>Account</Link>
+        if (user) return (
+            <>
+                <Link key='Account' to='/account'>Account</Link>
+                <button onClick={handleClickSignOut}>Sign out</button>
+            </>
+        )
 
         return (
             <>
@@ -37,7 +48,6 @@ function Nav() {
     useEffect(() => {
         const fetchUser = async () => {
             const currentUser = await AuthService.getUser()
-            console.log('currentUser :>> ', currentUser)
             setUser(currentUser)
         }
 
