@@ -33,7 +33,7 @@ function Nav() {
         if (user) return (
             <>
                 <Link key='Account' to='/account'>Account</Link>
-                <button onClick={handleClickSignOut}>Sign out</button>
+                <button className='btn' onClick={handleClickSignOut}>Sign out</button>
             </>
         )
 
@@ -55,7 +55,7 @@ function Nav() {
     }, [])
     return (
         <>
-            <nav className="flex gap-4 p-4">
+            <nav className="flex gap-4 p-4 items-center">
                 {navContent.main.map(item => (
                     <Link key={item.title} to={item.url}>{item.title}</Link>
                 ))}
