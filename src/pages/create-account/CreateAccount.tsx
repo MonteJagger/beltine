@@ -1,13 +1,30 @@
 import { useState } from "react";
 import AuthService from "@/services/auth";
+import { useNavigate } from "react-router-dom";
 
 function CreateAccount() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [errorMessage, setErrorMessage] = useState('')
+    const navigate = useNavigate()
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
-        await AuthService.createAccount(email, password)
+        try {
+            await AuthService.createAccount(email, password)
+            navigate('/')
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                setErrorMessage(error.message)
+            } else {
+                setErrorMessage('An unexpected error occurred. Please try again later.')
+            }
+        }
+    }
+
+    function handleChangeEmail(email: string) {
+        setEmail(email)
+        setErrorMessage('')
     }
 
     return (
@@ -21,7 +38,7 @@ function CreateAccount() {
                         id="email"
                         placeholder="Email"
                         value={email}
-                        onChange={e => setEmail(e.target.value)}
+                        onChange={e => handleChangeEmail(e.target.value)}
                         autoComplete="email"
                     />
                 </div>
@@ -36,6 +53,8 @@ function CreateAccount() {
                         onChange={e => setPassword(e.target.value)}
                     />
                 </div>
+
+                <div className="error-message text-red-600">{ errorMessage }</div>
 
                 <div className="cta-buttons">
                     <button type="submit" className="btn">Create</button>
