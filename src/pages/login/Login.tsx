@@ -1,14 +1,33 @@
 import { useState } from "react"
 import './Login.scss'
+import AuthService from "@/services/auth"
+import { useNavigate } from "react-router-dom"
 
 function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [errorMessage, setErrorMessage] = useState('')
+    const navigate = useNavigate()
+
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
+
+        try {
+            await AuthService.signIn(email, password)
+            navigate('/')
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                setErrorMessage(error.message)
+            } else {
+                setErrorMessage('An unexpected error occurred. Please try again later.')
+            }
+        }
+    }
 
     return (
         <>
             <h1>Login</h1>
-            <form className="form login-form">
+            <form className="form login-form" onSubmit={handleSubmit}>
                 <div className="input-group email">
                     <label htmlFor="email">Email</label>
                     <input
@@ -17,6 +36,7 @@ function Login() {
                         placeholder="Email"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
+                        required
                         autoComplete="email"
                     />
                 </div>
@@ -29,11 +49,14 @@ function Login() {
                         placeholder="Password"
                         value={password}
                         onChange={e => setPassword(e.target.value)}
+                        required
                         />
                 </div>
 
+                <div className="error-message text-red-600">{ errorMessage }</div>
+
                 <div className="cta-buttons">
-                    <button type="submit" className="btn-forgot">Forgot Password?</button>
+                    <button className="btn-forgot">Forgot Password?</button>
                     <button type="submit" className="btn">Login</button>
                 </div>
             </form>

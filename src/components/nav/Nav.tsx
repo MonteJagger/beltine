@@ -29,7 +29,9 @@ function Nav() {
         setUser(null)
     }
 
+
     const getUserNav = () => {
+        console.log('getUserNav :>> ')
         if (user) return (
             <>
                 <Link key='Account' to='/account'>Account</Link>

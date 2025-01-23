@@ -10,7 +10,7 @@ const AuthService = {
   getUser,
   signOut
 }
- 
+
 export default AuthService
 
 async function getUser(): Promise<Auth.User | null> {
@@ -56,13 +56,17 @@ async function signIn(email: string, password: string) {
     // TODO: Set user cookies - store accessToken in the cookie
   } catch (error) {
     if (error instanceof FirebaseError) {
-      // const errorCode = error.code;
-      console.warn('error :>> ', error)
+      const errorCode = error.code
+      console.warn('error :>> ', error, error.code)
 
-      // TODO: add error codes conditions and throw error object
+      if (errorCode === Auth.AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
+        throw new Error('Invalid login creadentials')
+      } else {
+        throw new Error('There has been an issue creating your account. Please try again later.')
+      }
     } else {
-      console.error('Unexpected error: ', error)
-      // TODO: throw error object
+      console.error('Unexpected error: :>> ', error)
+      throw new Error('There has been an issue logging into your account. Please try again later.')
     }
   }
 }

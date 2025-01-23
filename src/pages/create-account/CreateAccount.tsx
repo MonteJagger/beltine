@@ -10,6 +10,7 @@ function CreateAccount() {
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
+
         try {
             await AuthService.createAccount(email, password)
             navigate('/')
@@ -39,6 +40,7 @@ function CreateAccount() {
                         placeholder="Email"
                         value={email}
                         onChange={e => handleChangeEmail(e.target.value)}
+                        required
                         autoComplete="email"
                     />
                 </div>
@@ -51,6 +53,7 @@ function CreateAccount() {
                         placeholder="password"
                         value={password}
                         onChange={e => setPassword(e.target.value)}
+                        required
                     />
                 </div>
 
