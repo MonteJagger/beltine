@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "@/context/authContext";
+import { useAuthContext } from "@/services/auth/AuthContext";
 
 function CreateAccount() {
     const [email, setEmail] = useState('')

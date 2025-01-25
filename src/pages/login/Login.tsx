@@ -1,7 +1,7 @@
 import { useState } from "react"
 import './Login.scss'
 import { useNavigate } from "react-router-dom"
-import { useAuthContext } from "@/context/authContext"
+import { useAuthContext } from "@/services/auth/AuthContext"
 
 function Login() {
     const [email, setEmail] = useState('')

@@ -1,4 +1,4 @@
-import { useAuthContext } from "@/context/authContext"
+import { useAuthContext } from "@/services/auth/AuthContext"
 import { Link } from "react-router-dom"
 
 const navContent = {

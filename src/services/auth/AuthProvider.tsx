@@ -1,22 +1,11 @@
-import { createContext, useContext, useEffect, useState } from "react"
-import * as Auth from "firebase/auth";
-import AuthService from "@/services/authService";
-
-
-interface iAuthContext {
-    isAuthenticated: boolean;
-    user: Auth.User | null;
-    createAccount: (email: string, password: string) => Promise<void>;
-    signIn: (email: string, password: string) => Promise<void>;
-    signOut: () => Promise<void>;
-}
-
-
-export const AuthContext = createContext<iAuthContext | undefined>(undefined)
+import { AuthContext } from "@/services/auth/AuthContext"
+import AuthService from "@/services/auth/AuthService"
+import { User } from "firebase/auth"
+import { useState, useEffect } from "react"
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
-    const [user, setUser] = useState<Auth.User | null>(null)
+    const [user, setUser] = useState<User | null>(null)
 
     // on initial load check to see if the user is logged in
     useEffect(() => {
@@ -84,11 +73,3 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     return <AuthContext.Provider value={authValue} > {children}</AuthContext.Provider >
 }
-
-export const useAuthContext = (): iAuthContext => {
-    const context = useContext(AuthContext);
-    if (!context) {
-      throw new Error('useAuth must be used within an AuthProvider');
-    }
-    return context;
-  }

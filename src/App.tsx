@@ -8,7 +8,7 @@ import Layout from '@/components/layout/Layout';
 import CreateAccount from '@/pages/create-account/CreateAccount';
 import NotFound from '@/pages/not-found/NotFound';
 import Account from '@/pages/account/Account';
-import { AuthProvider } from '@/context/authContext';
+import { AuthProvider } from '@/services/auth/AuthProvider';
 
 function App() {
   return (
