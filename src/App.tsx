@@ -8,13 +8,17 @@ import Layout from '@/components/layout/Layout';
 import CreateAccount from '@/pages/create-account/CreateAccount';
 import NotFound from '@/pages/not-found/NotFound';
 import Account from '@/pages/account/Account';
+import { AuthProvider } from '@/context/authContext';
 
 function App() {
   return (
-    <>
+    // By wrapping the entire application with AuthProvider, 
+    // this ensures that useAuthContext can be used in any component
+    <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Layout />}>
+          {/* the children of / path will be inside Layout as the Outlet */}
+          <Route path='/' element={<Layout />}> 
             <Route index element={<Home />} />
             <Route path='about' element={<About />} />
             <Route path='contact' element={<Contact />} />
@@ -26,7 +30,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </>
+    </AuthProvider>
   )
 }
 

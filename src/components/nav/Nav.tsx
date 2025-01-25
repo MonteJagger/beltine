@@ -1,34 +1,17 @@
-import AuthService from "@/services/auth"
-import { User } from "firebase/auth"
-import { useEffect, useState } from "react"
+import { useAuthContext } from "@/context/authContext"
 import { Link } from "react-router-dom"
 
 const navContent = {
     main: [
-        {
-            title: 'Home',
-            url: '/',
-        },
-        {
-            title: 'About',
-            url: '/about',
-        },
-        {
-            title: 'Contact',
-            url: '/contact',
-        }
+        { title: 'Home', url: '/' },
+        { title: 'About', url: '/about' },
+        { title: 'Contact', url: '/contact' }
     ]
 }
 
 function Nav() {
-    // TODO: make user a context to share state across the app
-    const [user, setUser] = useState<User | null>(null)
-
-    const handleClickSignOut = () => {
-        AuthService.signOut()
-        setUser(null)
-    }
-
+    const { user, signOut } = useAuthContext()
+    const handleClickSignOut = async () => { await signOut() }
 
     const getUserNav = () => {
         if (user) return (
@@ -46,14 +29,6 @@ function Nav() {
         )
     }
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            const currentUser = await AuthService.getUser()
-            setUser(currentUser)
-        }
-
-        fetchUser()
-    }, [])
     return (
         <>
             <nav className="flex gap-4 p-4 items-center">
@@ -61,6 +36,7 @@ function Nav() {
                     <Link key={item.title} to={item.url}>{item.title}</Link>
                 ))}
 
+                {/* additional navs based on whether there is a user logged in */}
                 { getUserNav() }
             </nav>
 

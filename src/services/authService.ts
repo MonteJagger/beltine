@@ -4,9 +4,9 @@ import { FirebaseError } from "firebase/app";
 import * as Auth from "firebase/auth";
 
 const AuthService = {
+  getUser,
   createAccount,
   signIn,
-  getUser,
   signOut
 }
 
@@ -58,7 +58,7 @@ async function signIn(email: string, password: string) {
       const errorCode = error.code
 
       if (errorCode === Auth.AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
-        throw new Error('Invalid login creadentials')
+        throw new Error('Invalid login credentials')
       } else {
         console.warn('Unexpected error: ', errorCode, error)
         throw new Error('There has been an issue creating your account. Please try again later.')

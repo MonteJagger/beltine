@@ -1,19 +1,20 @@
 import { useState } from "react"
 import './Login.scss'
-import AuthService from "@/services/auth"
 import { useNavigate } from "react-router-dom"
+import { useAuthContext } from "@/context/authContext"
 
 function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
+    const { signIn } = useAuthContext()
     const navigate = useNavigate()
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
         try {
-            await AuthService.signIn(email, password)
+            await signIn(email, password)
             navigate('/')
         } catch (error: unknown) {
             if (error instanceof Error) {
