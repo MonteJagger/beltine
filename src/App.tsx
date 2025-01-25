@@ -7,6 +7,7 @@ import Login from '@/pages/login/Login';
 import Layout from '@/components/layout/Layout';
 import CreateAccount from '@/pages/create-account/CreateAccount';
 import NotFound from '@/pages/not-found/NotFound';
+import Account from '@/pages/account/Account';
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
             <Route path='contact' element={<Contact />} />
             <Route path='login' element={<Login />} />
             <Route path='create-account' element={<CreateAccount />} />
+            <Route path='create-account' element={<CreateAccount />} />
+            <Route path='account' element={<Account />} />
             <Route path='*' element={<NotFound />} />
           </Route>
         </Routes>

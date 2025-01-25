@@ -31,7 +31,6 @@ function Nav() {
 
 
     const getUserNav = () => {
-        console.log('getUserNav :>> ')
         if (user) return (
             <>
                 <Link key='Account' to='/account'>Account</Link>
@@ -42,7 +41,6 @@ function Nav() {
         return (
             <>
                 <Link key='Log in' to='/login'>Log in</Link>
-                {/* TODO: Create Account Page */}
                 <Link key='Create Account' to='/create-account'>Create Account</Link>
             </>
         )

@@ -3,7 +3,6 @@ import app from "@/services/firebase";
 import { FirebaseError } from "firebase/app";
 import * as Auth from "firebase/auth";
 
-
 const AuthService = {
   createAccount,
   signIn,
@@ -30,7 +29,6 @@ async function createAccount(email: string, password: string) {
   } catch (error) {
     if (error instanceof FirebaseError) {
       const errorCode = error.code
-      console.warn('error :>> ', error)
 
       if (errorCode === Auth.AuthErrorCodes.EMAIL_EXISTS) {
         throw new Error('Email already in use')
@@ -39,10 +37,11 @@ async function createAccount(email: string, password: string) {
       } else if (errorCode === Auth.AuthErrorCodes.WEAK_PASSWORD) {
         throw new Error('Password should be at least 6 characters')
       } else {
+        console.warn('Unexpected error: ', errorCode, error)
         throw new Error('There has been an issue creating your account. Please try again later.')
       }
     } else {
-      console.error('Unexpected error: :>> ', error)
+      console.error('Unexpected error: ', error)
       throw new Error('There has been an issue creating your account. Please try again later.')
     }
   }
@@ -57,15 +56,15 @@ async function signIn(email: string, password: string) {
   } catch (error) {
     if (error instanceof FirebaseError) {
       const errorCode = error.code
-      console.warn('error :>> ', error, error.code)
 
       if (errorCode === Auth.AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
         throw new Error('Invalid login creadentials')
       } else {
+        console.warn('Unexpected error: ', errorCode, error)
         throw new Error('There has been an issue creating your account. Please try again later.')
       }
     } else {
-      console.error('Unexpected error: :>> ', error)
+      console.error('Unexpected error: ', error)
       throw new Error('There has been an issue logging into your account. Please try again later.')
     }
   }
