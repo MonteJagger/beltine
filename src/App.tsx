@@ -7,7 +7,7 @@ import Login from '@/pages/login/Login';
 import Layout from '@/components/layout/Layout';
 import CreateAccount from '@/pages/create-account/CreateAccount';
 import NotFound from '@/pages/not-found/NotFound';
-import Account from '@/pages/account/Account';
+import Dashboard from '@/pages/dashboard/Dashboard';
 import { AuthProvider } from '@/services/auth/AuthProvider';
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
             <Route path='login' element={<Login />} />
             <Route path='create-account' element={<CreateAccount />} />
             <Route path='create-account' element={<CreateAccount />} />
-            <Route path='account' element={<Account />} />
+            <Route path='dashboard' element={<Dashboard />} />
             <Route path='*' element={<NotFound />} />
           </Route>
         </Routes>

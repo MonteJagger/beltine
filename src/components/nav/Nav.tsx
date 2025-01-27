@@ -16,7 +16,7 @@ function Nav() {
     const getUserNav = () => {
         if (user) return (
             <>
-                <Link key='Account' to='/account'>Account</Link>
+                <Link key='Dashboard' to='/dashboard'>Dashboard</Link>
                 <button className='btn' onClick={handleClickSignOut}>Sign out</button>
             </>
         )

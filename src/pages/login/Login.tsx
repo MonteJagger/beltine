@@ -15,7 +15,7 @@ function Login() {
 
         try {
             await signIn(email, password)
-            navigate('/')
+            navigate('/dashboard')
         } catch (error: unknown) {
             if (error instanceof Error) {
                 setErrorMessage(error.message)
@@ -51,10 +51,10 @@ function Login() {
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                         required
-                        />
+                    />
                 </div>
 
-                <div className="error-message text-red-600">{ errorMessage }</div>
+                <div className="error-message text-red-600">{errorMessage}</div>
 
                 <div className="cta-buttons">
                     <button className="btn-forgot">Forgot Password?</button>

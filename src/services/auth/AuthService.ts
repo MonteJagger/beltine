@@ -25,6 +25,10 @@ async function createAccount(email: string, password: string) {
     const auth = Auth.getAuth(app)
     const userCredential: Auth.UserCredential = await Auth.createUserWithEmailAndPassword(auth, email, password)
     const idToken = await userCredential.user.getIdToken()
+    await Auth.updateProfile(userCredential.user, {
+      displayName: 'jib',
+    })
+
     cookies.set('idToken', idToken)
   } catch (error) {
     if (error instanceof FirebaseError) {
