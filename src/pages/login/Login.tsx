@@ -25,6 +25,9 @@ function Login() {
         }
     }
 
+    const env = import.meta.env
+    console.log('env :>> ', env)
+    console.log('env :>> ', env.VITE_TEST_STRING)
     return (
         <>
             <h1>Login</h1>
