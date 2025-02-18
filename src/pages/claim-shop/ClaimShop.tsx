@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "@/services/auth/AuthContext";
+// import { useAuthContext } from "@/services/auth/AuthContext";
 
 function ClaimShop() {
     const [firstName, setFirstName] = useState('')
@@ -15,7 +15,7 @@ function ClaimShop() {
     const [buildingNumber, setBuildingNumber] = useState('')
     
     const [errorMessage, setErrorMessage] = useState('')
-    const { createAccount } = useAuthContext()
+    // const { createAccount } = useAuthContext()
     const navigate = useNavigate()
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
