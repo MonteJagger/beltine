@@ -5,7 +5,7 @@ import About from '@/pages/about/About';
 import Contact from '@/pages/contact/Contact';
 import Login from '@/pages/login/Login';
 import Layout from '@/components/layout/Layout';
-import CreateAccount from '@/pages/create-account/CreateAccount';
+import ClaimShop from '@/pages/claim-shop/ClaimShop';
 import NotFound from '@/pages/not-found/NotFound';
 import Dashboard from '@/pages/dashboard/Dashboard';
 import { AuthProvider } from '@/services/auth/AuthProvider';
@@ -23,8 +23,8 @@ function App() {
             <Route path='about' element={<About />} />
             <Route path='contact' element={<Contact />} />
             <Route path='login' element={<Login />} />
-            <Route path='create-account' element={<CreateAccount />} />
-            <Route path='create-account' element={<CreateAccount />} />
+            <Route path='claim-shop' element={<ClaimShop />} />
+            <Route path='claim-shop' element={<ClaimShop />} />
             <Route path='dashboard' element={<Dashboard />} />
             <Route path='*' element={<NotFound />} />
           </Route>

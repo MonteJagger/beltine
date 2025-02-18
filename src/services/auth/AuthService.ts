@@ -20,7 +20,8 @@ async function getUser(): Promise<Auth.User | null> {
   })
 }
 
-async function createAccount(email: string, password: string) {
+// TODO: this will need to send an email verification to the admins
+async function createAccount(email: string, phoneNumber: string, password: string) {
   try {
     const auth = Auth.getAuth(app)
     const userCredential: Auth.UserCredential = await Auth.createUserWithEmailAndPassword(auth, email, password)

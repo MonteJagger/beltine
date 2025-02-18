@@ -24,7 +24,7 @@ function Nav() {
         return (
             <>
                 <Link key='Log in' to='/login'>Log in</Link>
-                <Link key='Create Account' to='/create-account'>Create Account</Link>
+                <Link key='Claim Shop' to='/claim-shop'>Claim Shop</Link>
             </>
         )
     }
