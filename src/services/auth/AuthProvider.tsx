@@ -20,9 +20,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         fetchUser()
     }, [])
 
-    async function createAccount(email: string, phoneNumber: string, password: string) {
+    async function createAccount(email: string, password: string) {
         try {
-            await AuthService.createAccount(email, phoneNumber, password)
+            await AuthService.createAccount(email, password)
             const currentUser = await AuthService.getUser()
             setUser(currentUser)
             setIsAuthenticated(!!currentUser)
